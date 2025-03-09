@@ -1,0 +1,17 @@
+<button
+  class="app-button"
+  [appTooltip]="tooltip"
+  [disabled]="disabled"
+  (click)="handleClick()"
+>
+  <app-icon *ngIf="icon" [icon]="icon"></app-icon>
+  <span class="button-text">{{ text }}</span>
+  <span class="badge" *ngIf="badge !== null && badge !== undefined">
+    {{ badge }}
+  </span>
+
+  <app-progress-bar
+    *ngIf="showProgress"
+    [value]="progress">
+  </app-progress-bar>
+</button>

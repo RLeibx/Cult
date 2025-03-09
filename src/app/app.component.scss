@@ -1,0 +1,84 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #121212;
+  }
+  
+  .card {
+    background: #1e1e1e;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    width: 350px;
+    text-align: center;
+  }
+  
+  .counter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .production-info {
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    color: #fff;
+    padding-left: 10px;
+  }
+  
+  .toggle-bar {
+    margin-bottom: 20px;
+  }
+  
+  .toggle-bar button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .toggle-bar button.active {
+    background: #007acc;
+  }
+  
+  .servants {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .servant {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .servant-info {
+    color: #fff;
+    margin-bottom: 5px;
+  }
+  
+  .servant-info.locked {
+    opacity: 0.5;
+  }
+  
+  button {
+    padding: 5px 10px;
+    border: none;
+    background: #007acc;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button[disabled] {
+    background: #555;
+    cursor: not-allowed;
+  }
+  

@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="card">
+    <!-- Contador de Almas estilo split-flap display -->
+    <div class="counter-container">
+      <app-counter [value]="souls"></app-counter>
+      <div class="production-info">
+        {{ production | number:'1.2-2' }} souls/sec
+      </div>
+    </div>
+
+    <!-- Barra de toggles para quantidade de compra -->
+    <div class="toggle-bar">
+      <button [class.active]="purchaseQuantity === 1" (click)="setPurchaseQuantity(1)">1</button>
+      <button [class.active]="purchaseQuantity === 10" (click)="setPurchaseQuantity(10)">10</button>
+      <button [class.active]="purchaseQuantity === 100" (click)="setPurchaseQuantity(100)">Milestone</button>
+      <button [class.active]="purchaseQuantity === -1" (click)="setPurchaseQuantity(-1)">Max</button>
+    </div>
+
+    <!-- Área dos Servants -->
+    <div class="servants">
+      <div class="servant" *ngFor="let servant of servants">
+        <div class="servant-info" [class.locked]="!servant.unlocked">
+          <span>{{ servant.unlocked ? servant.name : '???' }}</span>
+          <span>Qtd: {{ servant.count }}</span>
+          <span>Custo: {{ servant.cost | number:'1.0-0' }}</span>
+          <span>Cycle: {{ servant.cycleTime }}s | Prod: {{ servant.soulsProduced }}</span>
+        </div>
+        <button 
+          [disabled]="!servant.unlocked || souls < servant.cost" 
+          (click)="buyServant(servant)">
+          Comprar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
