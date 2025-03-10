@@ -1,19 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TooltipDirective } from '../../directives/tooltip.directive';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 import { IconComponent } from '../icon/icon.component';
 
 @Component({
   imports: [
     CommonModule,
-    TooltipDirective,
     ProgressBarComponent,
     IconComponent,
   ],
   selector: 'app-button',
   templateUrl: './button.component.html',
-  styleUrl: './button.component.scss',
+  styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
   @Input() text: string = '';

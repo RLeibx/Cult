@@ -23,5 +23,3 @@ export class CounterComponent implements OnChanges {
     this.digits = String(Math.floor(this.value)).split('').map(Number);
   }
 }
-
-

@@ -1,0 +1,23 @@
+.toggle-button {
+  display: inline-flex;
+  background: var(--background-100);
+  border: 2px solid var(--neutral-100);
+  border-radius: 20px;
+  overflow: hidden;
+
+  &__item {
+    padding: 10px 20px;
+    cursor: pointer;
+    color: var(--neutral-200);
+    font-weight: 400;
+
+    &--selected {
+      color: var(--neutral-100);
+      font-weight: 600;
+    }
+
+    &:not(&--selected):hover {
+      color: var(--neutral-100);
+    }
+  }
+}

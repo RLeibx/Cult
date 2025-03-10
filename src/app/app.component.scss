@@ -1,84 +1,71 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #121212;
-  }
-  
-  .card {
-    background: #1e1e1e;
-    padding: 40px;
+.app {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__card {
+    background: var(--background-100);
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     width: 350px;
     text-align: center;
+    margin-bottom: 20px;
   }
-  
-  .counter-container {
+
+  &__counter-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     align-items: center;
     margin-bottom: 20px;
   }
-  
-  .production-info {
+
+  &__production-info {
     font-family: sans-serif;
     font-size: 1.2rem;
-    color: #fff;
+    color: var(--neutral-100);
     padding-left: 10px;
   }
-  
-  .toggle-bar {
-    margin-bottom: 20px;
+
+  &__toggle-bar {
+    display: flex;
+    justify-content: center;
   }
-  
-  .toggle-bar button {
-    margin: 0 5px;
-    padding: 5px 10px;
-    background: #333;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .toggle-bar button.active {
-    background: #007acc;
-  }
-  
-  .servants {
+
+  &__servants {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
-  
-  .servant {
+
+  &__servant {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
-  .servant-info {
-    color: #fff;
+
+  &__servant-info {
+    color: var(--neutral-100);
     margin-bottom: 5px;
+
+    &--locked {
+      opacity: 0.5;
+    }
   }
-  
-  .servant-info.locked {
-    opacity: 0.5;
-  }
-  
-  button {
+
+  &__button {
     padding: 5px 10px;
     border: none;
-    background: #007acc;
-    color: #fff;
+    background: var(--background-100);
+    color: var(--neutral-100);
     border-radius: 5px;
     cursor: pointer;
+
+    &--disabled {
+      background: var(--background-200);
+      cursor: not-allowed;
+    }
   }
-  
-  button[disabled] {
-    background: #555;
-    cursor: not-allowed;
-  }
-  
+}

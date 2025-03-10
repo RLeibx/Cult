@@ -1,12 +1,14 @@
-.progress-bar-wrapper {
-  width: 100%;
-  height: 6px;
-  background-color: var(--neutral-100);
-  overflow: hidden;
-}
-
 .progress-bar {
-  height: 100%;
-  background-color: var(--secondary-100);
-  transition: width 0.3s ease;
+  &__wrapper {
+    width: 100%;
+    height: 6px;
+    background-color: var(--background-200);
+    overflow: hidden;
+  }
+
+  &__bar {
+    height: 100%;
+    background-color: var(--secondary-100);
+    transition: width 0.3s ease;
+  }
 }
