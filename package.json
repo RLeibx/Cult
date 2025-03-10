@@ -4,7 +4,7 @@
   "scripts": {
     "start": "ng serve",
     "build": "ng build --configuration development",
-    "deploy": "ng build --configuration production --base-href https://riclop.github.io/the-idle-ones/ & ngh --dir=dist/the-idle-ones/browser"
+    "deploy": "ng build --configuration production --base-href https://rleibx.github.io/Cult/ & ngh --dir=dist/the-idle-ones/browser"
   },
   "private": true,
   "dependencies": {
