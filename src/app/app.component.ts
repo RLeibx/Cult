@@ -24,8 +24,8 @@ export class AppComponent {
 
   servants: Servant[] = [
     { name: 'Cultistas', cost: 10, cycleTime: 5, soulsProduced: 1, count: 0, unlocked: true },
-    { name: 'Zumbis', cost: 100, cycleTime: 8, soulsProduced: 10, count: 0, unlocked: false },
-    { name: 'Aberrações', cost: 1000, cycleTime: 12, soulsProduced: 100, count: 0, unlocked: false }
+    { name: 'Byakhees', cost: 100, cycleTime: 8, soulsProduced: 10, count: 0, unlocked: false },
+    { name: 'Shoggoths', cost: 1000, cycleTime: 12, soulsProduced: 100, count: 0, unlocked: false }
   ];
 
   constructor() {
@@ -70,7 +70,7 @@ export class AppComponent {
       }
     }
   }
-  
+
   setPurchaseQuantity(quantity: number) {
     this.purchaseQuantity = quantity;
   }
@@ -88,5 +88,9 @@ export class AppComponent {
   onPurchaseToggle(index: number) {
     const quantityMap = [1, 10, 100, -1];
     this.setPurchaseQuantity(quantityMap[index]);
+  }
+
+  getBuyServantProgress(servant: Servant): number {
+    return Math.min((this.souls / servant.cost) * 100, 100);
   }
 }

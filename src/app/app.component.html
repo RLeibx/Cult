@@ -4,13 +4,13 @@
       <app-counter [value]="souls"></app-counter>
     </div>
     <div class="app__production-info">
-      {{ production | number:'1.2-2' }} Souls/sec
+      {{ production | number:'1.2-2' }} Almas/seg
     </div>
   </div>
   <div class="app__card">
     <div class="app__toggle-bar">
       <app-toggle-button
-        [items]="['One','Next','Max']"
+        [items]="['Um','Próx','Max']"
         [selectedIndex]="getSelectedIndex()"
         (selectionChange)="onPurchaseToggle($event)">
       </app-toggle-button>
@@ -24,8 +24,9 @@
           [text]="servant.unlocked ? servant.name : '???'" 
           [icon]="!servant.unlocked ? '' : servant.count == 0 ? 'add' : 'keyboard_arrow_up'"
           [badge]="servant.count > 0 ? servant.count : undefined"
-          [tooltip]="servant.unlocked ? 'Custo: ' + servant.cost + ' souls' : 'Desbloqueie para comprar'"
           [disabled]="!servant.unlocked || souls < servant.cost" 
+          [showProgress]="true"
+          [progress]="getBuyServantProgress(servant)"
           (buttonClick)="buyServant(servant)">
         </app-button>
       </div>
