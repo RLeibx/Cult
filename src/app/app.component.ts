@@ -1,32 +1,29 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { interval } from 'rxjs';
-import { CounterComponent } from './core/ui/counter/counter.component';
-import { Servant } from './core/models/servant.model';
-import { ButtonComponent } from './core/ui/button/button.component';
-import { ToggleButtonComponent } from './core/ui/toggle-button/toggle-button.component';
+import { Servant } from './models/servant.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [
-    CommonModule,
-    CounterComponent,
-    ButtonComponent,
-    ToggleButtonComponent
-  ]
+  imports: [CommonModule]
 })
 export class AppComponent {
-  souls: number = 10;
+  souls: number = 0;
   lastUpdate: number = Date.now();
   purchaseQuantity: number = 1;
 
   servants: Servant[] = [
-    { name: 'Cultistas', cost: 10, cycleTime: 5, soulsProduced: 1, count: 0, unlocked: true },
+    { name: 'Cultistas', cost: 10, cycleTime: 5, soulsProduced: 1, count: 1, unlocked: true },
     { name: 'Byakhees', cost: 100, cycleTime: 8, soulsProduced: 10, count: 0, unlocked: false },
     { name: 'Shoggoths', cost: 1000, cycleTime: 12, soulsProduced: 100, count: 0, unlocked: false }
   ];
+
+  digits: number[] = [];
+  minLength: number = 7;
+  items: string[] = ['Um', 'Próx', 'Max'];
+  selectedIndex: number = 0;
 
   constructor() {
     this.updateGame();
@@ -45,7 +42,21 @@ export class AppComponent {
       this.lastUpdate = now;
       this.souls += this.production * delta;
       this.checkUnlocks();
+      this.updateCycleProgress();
+      this.updateDigits();
     });
+  }
+
+  updateCycleProgress() {
+    this.servants.forEach(servant => {
+      if (servant.count > 0) {
+        servant.cycleProgress = (Date.now() % (servant.cycleTime * 1000)) / (servant.cycleTime * 10);
+      }
+    });
+  }
+
+  canBuyServant(servant: Servant): boolean {
+    return this.souls >= servant.cost;
   }
 
   buyServant(servant: Servant) {
@@ -92,5 +103,19 @@ export class AppComponent {
 
   getBuyServantProgress(servant: Servant): number {
     return Math.min((this.souls / servant.cost) * 100, 100);
+  }
+
+  getCycleProgress(servant: Servant): number {
+    return servant.cycleProgress || 0;
+  }
+
+  updateDigits() {
+    const valueStr = String(Math.floor(this.souls)).padStart(this.minLength, '0');
+    this.digits = valueStr.split('').map(Number);
+  }
+
+  select(index: number) {
+    this.selectedIndex = index;
+    this.onPurchaseToggle(index);
   }
 }

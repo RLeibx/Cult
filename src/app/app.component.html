@@ -1,34 +1,40 @@
 <div class="app">
-  <div class="app__card">
-    <div class="app__counter-container">
-      <app-counter [value]="souls"></app-counter>
+  <div class="souls-card">
+    <div class="counter">
+      <span class="digit" *ngFor="let digit of digits">{{ digit }}</span>
     </div>
-    <div class="app__production-info">
-      {{ production | number:'1.2-2' }} Almas/seg
-    </div>
-  </div>
-  <div class="app__card">
-    <div class="app__toggle-bar">
-      <app-toggle-button
-        [items]="['Um','Próx','Max']"
-        [selectedIndex]="getSelectedIndex()"
-        (selectionChange)="onPurchaseToggle($event)">
-      </app-toggle-button>
+    <div class="production-info">
+      {{ production | number:'1.0-1' }} Almas/seg
     </div>
   </div>
-  
-  <div class="app__card">
-    <div class="app__servants">
-      <div class="app__servant" *ngFor="let servant of servants">
-        <app-button 
-          [text]="servant.unlocked ? servant.name : '???'" 
-          [icon]="!servant.unlocked ? '' : servant.count == 0 ? 'add' : 'keyboard_arrow_up'"
-          [badge]="servant.count > 0 ? servant.count : undefined"
-          [disabled]="!servant.unlocked || souls < servant.cost" 
-          [showProgress]="true"
-          [progress]="getBuyServantProgress(servant)"
-          (buttonClick)="buyServant(servant)">
-        </app-button>
+  <div class="toggle-card">
+    <div class="toggle-bar">
+      <div class="toggle-button" *ngFor="let item of items; let i = index"
+        [class.selected]="i === selectedIndex" (click)="select(i)">
+        {{ item }}
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="servant-card" *ngFor="let servant of servants">
+      <div class="content-section">
+        <div [class.locked]="!servant.unlocked" [class.disabled]="!canBuyServant(servant)">
+          <div class="header">
+            <span class="name">{{ servant.unlocked ? servant.name : '???' }}</span>
+          </div>
+          <div class="body">
+            <div class="property">Souls Produced: {{ servant.soulsProduced }}</div>
+          </div>
+          <div class="cycle-progress-bar">
+            <div class="progress" [style.width.%]="getCycleProgress(servant)"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clickable-section" (click)="buyServant(servant)">
+        <span class="count" *ngIf="servant.count > 0">{{ servant.count }}</span>
+        <div class="progress-bar-vertical">
+          <div class="progress" [style.height.%]="getBuyServantProgress(servant)"></div>
+        </div>
       </div>
     </div>
   </div>
