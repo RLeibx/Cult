@@ -101,6 +101,13 @@ export class AppComponent {
     this.setPurchaseQuantity(quantityMap[index]);
   }
 
+  milestones = [10, 25, 50, 100, 300, 500];
+
+  getCountProgress(servant: Servant): number {
+    const nextMilestone = this.milestones.find(m => m > servant.count) || this.milestones[this.milestones.length - 1];
+    return (servant.count / nextMilestone) * 100;
+  }
+
   getBuyServantProgress(servant: Servant): number {
     return Math.min((this.souls / servant.cost) * 100, 100);
   }

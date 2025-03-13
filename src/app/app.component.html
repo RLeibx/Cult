@@ -15,25 +15,35 @@
       </div>
     </div>
   </div>
-  <div class="card">
+  <div class="servants-card">
     <div class="servant-card" *ngFor="let servant of servants">
-      <div class="content-section">
-        <div [class.locked]="!servant.unlocked" [class.disabled]="!canBuyServant(servant)">
+      <div class="count-section">
+        <div class="count-progress">
+          <div class="count-progress-bar" [style.width.%]="getCountProgress(servant)"></div>
+        </div>
+        <span class="count" *ngIf="servant.count > 0">
+          {{ servant.count }}
+        </span>
+      </div>
+      <div class="info-section">
+        <div [class.locked]="!servant.unlocked">
           <div class="header">
             <span class="name">{{ servant.unlocked ? servant.name : '???' }}</span>
           </div>
-          <div class="body">
-            <div class="property">Souls Produced: {{ servant.soulsProduced }}</div>
+          <div class="cycle-progress">
+            <div class="cycle-progress-bar" [style.width.%]="getCycleProgress(servant)"></div>
           </div>
-          <div class="cycle-progress-bar">
-            <div class="progress" [style.width.%]="getCycleProgress(servant)"></div>
+          <div class="body">
+            <div class="property">{{ servant.soulsProduced }} Alma(s) recebida(s)</div>
           </div>
         </div>
       </div>
-      <div class="clickable-section" (click)="buyServant(servant)">
-        <span class="count" *ngIf="servant.count > 0">{{ servant.count }}</span>
-        <div class="progress-bar-vertical">
-          <div class="progress" [style.height.%]="getBuyServantProgress(servant)"></div>
+      <div class="buy-section" [class.disabled]="!canBuyServant(servant)" (click)="buyServant(servant)">
+        <span class="buy-cost" *ngIf="servant.count > 0">
+          {{ servant.cost }}
+        </span>
+        <div class="buy-progress">
+          <div class="buy-progress-bar" [style.width.%]="getBuyServantProgress(servant)"></div>
         </div>
       </div>
     </div>
