@@ -19,7 +19,7 @@
     <div class="servant-card" *ngFor="let servant of servants">
       <div class="count-section">
         <div class="count-progress">
-          <div class="count-progress-bar" [style.width.%]="getCountProgress(servant)"></div>
+          <div class="count-progress-bar" [style.height.%]="getCountProgress(servant)"></div>
         </div>
         <span class="count" *ngIf="servant.count > 0">
           {{ servant.count }}
@@ -43,7 +43,7 @@
           {{ servant.cost }}
         </span>
         <div class="buy-progress">
-          <div class="buy-progress-bar" [style.width.%]="getBuyServantProgress(servant)"></div>
+          <div class="buy-progress-bar" [style.height.%]="getBuyServantProgress(servant)"></div>
         </div>
       </div>
     </div>

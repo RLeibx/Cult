@@ -75,7 +75,7 @@
     }
   }
 
-  .servants-card {    
+  .servants-card {
     background: var(--background-100);
     display: flex;
     flex-direction: column;
@@ -87,45 +87,58 @@
     max-width: 400px;
     margin: 0 auto;
 
-    .servant-card {      
+    .servant-card {
       background: var(--background-200);
       display: flex;
-      flex-direction: column;
-      padding: 12px;      
+      flex-direction: row;
+      align-items: center;
+      padding: 12px;
       width: 100%;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      position: relative;
 
       .count-section {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-        padding-bottom: 5px;
+        gap: 5px;
+        width: 100%;
 
+        .count-progress {
+          width: 6px;
+          height: 50px;
+          background: #333;
+          border-radius: 3px;
+          overflow: hidden;
+          position: relative;
+
+          .count-progress-bar {
+            width: 100%;
+            height: 100%;
+            background: #4caf50;
+            position: absolute;
+            bottom: 0;
+            transition: height 0.3s ease-in-out;
+          }
+        }
+        
         .count {
           font-size: 1rem;
           font-weight: bold;
           color: #e0e0e0;
         }
-
-        .count-progress {
-          flex-grow: 1;
-          height: 6px;
-          background: #333;
-          border-radius: 3px;
-          margin-left: 8px;
-          overflow: hidden;
-
-          .count-progress-bar {
-            height: 100%;
-            background: #4caf50;
-            transition: width 0.3s ease-in-out;
-          }
-        }
       }
 
       .info-section {
-        padding: 8px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        padding: 10px 0;
+        border-top: 1px solid #444;
+        border-bottom: 1px solid #444;
 
         .header {
           font-size: 1.1rem;
@@ -138,10 +151,11 @@
           height: 6px;
           background: #333;
           border-radius: 3px;
-          margin-top: 5px;
           overflow: hidden;
+          margin-top: 5px;
 
           .cycle-progress-bar {
+            width: 0%;
             height: 100%;
             background: #ffeb3b;
             transition: width 0.3s ease-in-out;
@@ -157,44 +171,37 @@
 
       .buy-section {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-        padding: 8px;
-        background: #292929;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background 0.2s ease-in-out;
-
-        &:hover {
-          background: #373737;
-        }
-
-        &.disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
+        width: 100%;
+        padding: 10px 0;
 
         .buy-cost {
-          font-size: 0.9rem;
+          font-size: 1rem;
           font-weight: bold;
           color: #e0e0e0;
+          margin-bottom: 5px;
         }
 
         .buy-progress {
-          flex-grow: 1;
-          height: 6px;
+          width: 6px;
+          height: 50px;
           background: #333;
           border-radius: 3px;
-          margin-left: 8px;
           overflow: hidden;
+          position: relative;
 
           .buy-progress-bar {
+            width: 100%;
             height: 100%;
             background: #2196f3;
-            transition: width 0.3s ease-in-out;
+            position: absolute;
+            bottom: 0;
+            transition: height 0.3s ease-in-out;
           }
         }
       }
     }
+
   }
 }
